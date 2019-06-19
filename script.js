@@ -1,14 +1,14 @@
-let cartArea = document.querySelectorAll('.cart').item(0); 
-let goodsArea = document.querySelectorAll('.goods').item(0); 
-let good = document.querySelectorAll('.good');  
+let cartPlace = document.querySelectorAll('.cart').item(0); 
+let goods = document.querySelectorAll('.goods').item(0);   
 let finances = +document.querySelectorAll('.finances').item(0).textContent;
 let col = +document.querySelectorAll('.col').item(0).textContent;
+let good = document.querySelectorAll('.good');
 let dataGood, dataPriceGood;
 
-cartArea.addEventListener('dragover', function (event) {
+cartPlace.addEventListener('dragover', function (event) {
     event.preventDefault();
 });
-goodsArea.addEventListener('dragover', function (event) {
+goods.addEventListener('dragover', function (event) {
     event.preventDefault();
 });
 for (el of good) {
@@ -17,7 +17,7 @@ for (el of good) {
         dataPriceGood = +this.textContent;
     });
 };
-cartArea.addEventListener('drop', function(event) {
+cartPlace.addEventListener('drop', function(event) {
     if (finances-dataPriceGood >= 0) {
         this.appendChild(dataGood);
         document.querySelectorAll('.col').item(0).textContent = ++col;
@@ -25,7 +25,7 @@ cartArea.addEventListener('drop', function(event) {
         document.querySelectorAll('.finances').item(0).textContent=finances;}
     else alert('Не достаточно средств');
 });
-goodsArea.addEventListener('drop', function(event) {
+goods.addEventListener('drop', function(event) {
     this.appendChild(dataGood);
     document.querySelectorAll('.col').item(0).textContent = --col;
     finances=finances+dataPriceGood;
