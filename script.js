@@ -1,33 +1,33 @@
 let cartArea = document.querySelectorAll('.cart').item(0); 
-let productsArea = document.querySelectorAll('.products').item(0); 
-let product = document.querySelectorAll('.product');  
+let goodsArea = document.querySelectorAll('.goods').item(0); 
+let good = document.querySelectorAll('.good');  
 let finances = +document.querySelectorAll('.finances').item(0).textContent;
 let col = +document.querySelectorAll('.col').item(0).textContent;
-let tempProduct, tempPriceProduct;
+let dataGood, dataPriceGood;
 
 cartArea.addEventListener('dragover', function (event) {
     event.preventDefault();
 });
-productsArea.addEventListener('dragover', function (event) {
+goodsArea.addEventListener('dragover', function (event) {
     event.preventDefault();
 });
-for (elem of product) {
-    elem.addEventListener('dragstart', function (event) {
-        tempProduct = this;
-        tempPriceProduct = +this.textContent;
+for (el of good) {
+    el.addEventListener('dragstart', function (event) {
+        dataGood = this;
+        dataPriceGood = +this.textContent;
     });
 };
 cartArea.addEventListener('drop', function(event) {
-    if (finances-tempPriceProduct >= 0) {
-        this.appendChild(tempProduct);
+    if (finances-dataPriceGood >= 0) {
+        this.appendChild(dataGood);
         document.querySelectorAll('.col').item(0).textContent = ++col;
-        finances=finances-tempPriceProduct;
+        finances=finances-dataPriceGood;
         document.querySelectorAll('.finances').item(0).textContent=finances;}
     else alert('Не достаточно средств');
 });
-productsArea.addEventListener('drop', function(event) {
-    this.appendChild(tempProduct);
+goodsArea.addEventListener('drop', function(event) {
+    this.appendChild(dataGood);
     document.querySelectorAll('.col').item(0).textContent = --col;
-    finances=finances+tempPriceProduct;
+    finances=finances+dataPriceGood;
     document.querySelectorAll('.finances').item(0).textContent=finances;
 });
